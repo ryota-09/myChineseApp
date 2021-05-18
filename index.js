@@ -21,7 +21,7 @@ let add_ja = document.getElementById('add_ja');
 let add_ch = document.getElementById('add_ch');
 let save = document.getElementById('save');
 let display_ja = document.getElementById('display_ja');
-let display_ch = document.getElementById('display_ch}');
+let display_ch = document.getElementById('display_ch');
 
 save.addEventListener('click',() =>{
     var new_word = {"ja":`${add_ja.value}`,"ch":`${add_ch.value}`};
@@ -29,4 +29,12 @@ save.addEventListener('click',() =>{
     json_data.push(new_word);
     display_ja.textContent = JSON.parse(JSON.stringify(json_data[-1+json_data.length].ja));
     display_ch.textContent = JSON.parse(JSON.stringify(json_data[-1+json_data.length].ch));
+
+    console.log(json_data);
+
+    localStorage.setItem('new_data', JSON.stringify(json_data));
+    localStorage.getItem('new_data');
+
+    localStorage.removeItem('json_data',json_data);
+
 });
