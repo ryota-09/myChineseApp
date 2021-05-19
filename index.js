@@ -23,6 +23,14 @@ let save = document.getElementById('save');
 let display_ja = document.getElementById('display_ja');
 let display_ch = document.getElementById('display_ch');
 
+
+function saveJson_data(){
+	let save_json = JSON.stringify(json_data);    //「学習データ（配列）」を「JSON」へ変換
+	localStorage.setItem('learning_data', save_json);   //「ローカルストレージ」へセーブ
+};
+
+
+
 save.addEventListener('click',() =>{
     var new_word = {"ja":`${add_ja.value}`,"ch":`${add_ch.value}`};
 
@@ -32,9 +40,6 @@ save.addEventListener('click',() =>{
 
     console.log(json_data);
 
-    localStorage.setItem('new_data', JSON.stringify(json_data));
-    localStorage.getItem('new_data');
-
-    localStorage.removeItem('json_data',json_data);
+    saveJson_data();
 
 });
