@@ -2,6 +2,8 @@ const json_data = [
     {"ja":"こんにちは","ch":"你好"}
 ];
 
+const learning_data = [];
+
 const Jindex =JSON.stringify(json_data);
 
 const Sindex = localStorage.setItem('json_data',Jindex);
@@ -24,22 +26,25 @@ let display_ja = document.getElementById('display_ja');
 let display_ch = document.getElementById('display_ch');
 
 
-function saveJson_data(){
-	let save_json = JSON.stringify(json_data);    //「学習データ（配列）」を「JSON」へ変換
+var new_word =　{"ja":`${add_ja.value}`,"ch":`${add_ch.value}`};
+
+
+
+function saveJson_data(new_array){
+    let save_json = JSON.stringify(new_array);    //「学習データ（配列）」を「JSON」へ変換
 	localStorage.setItem('learning_data', save_json);   //「ローカルストレージ」へセーブ
 };
-
 
 
 save.addEventListener('click',() =>{
     var new_word = {"ja":`${add_ja.value}`,"ch":`${add_ch.value}`};
 
-    json_data.push(new_word);
-    display_ja.textContent = JSON.parse(JSON.stringify(json_data[-1+json_data.length].ja));
-    display_ch.textContent = JSON.parse(JSON.stringify(json_data[-1+json_data.length].ch));
+    learning_data.push(new_word);
+    //display_ja.textContent = JSON.parse(JSON.stringify(json_data[-1+json_data.length].ja));
+    //display_ch.textContent = JSON.parse(JSON.stringify(json_data[-1+json_data.length].ch));
 
-    console.log(json_data);
+    console.log(learning_data);
 
-    saveJson_data();
+    saveJson_data(learning_data);
 
 });
